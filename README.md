@@ -76,3 +76,24 @@ Note: If using poetry or a venv, python should reffer to the python inside the e
 | `--font_path`        | Path to a custom font file | Windows: Arial Bold. Other: NotoSansCJK-Bold | 
 | `--text_margin`      | Margin around text overlay (in pixels)| 10 |
 
+
+## Examples
+
+**Example 1: Image**
+
+![Example 1 Input](https://github.com/Rhuan-Marques/ascii_artist/blob/main/examples/1_input.jpg?raw=true)
+
+
+Using `python main.py <filepath> --width 100 --color --pixel_density 100`
+
+![Example 1 Output](https://github.com/Rhuan-Marques/ascii_artist/blob/main/examples/1_output.png?raw=true)
+
+
+**Example 2: gif**
+
+![Example 2 Input](https://github.com/Rhuan-Marques/ascii_artist/blob/main/examples/2_input.gif?raw=true)
+
+
+Using `main.py <filepath> --width 100 --time_between_frames 0.07 --repeat -1 --color --pixel_density 100 --brightness 2`
+
+![Example 2 Output](https://github.com/Rhuan-Marques/ascii_artist/blob/main/examples/2_output.gif?raw=true)

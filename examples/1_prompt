@@ -1,1 +1,0 @@
-python main.py <filepath> --width 100 --color --pixel_density 100
