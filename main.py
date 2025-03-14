@@ -225,13 +225,9 @@ def print_as_ascii(
             return
 
     results = []
-    add_txt = datetime.timedelta(0)
-    pixels2ascii = datetime.timedelta(0)
 
     for frame in frames:
-        before = datetime.datetime.now()
         image = add_text(frame, text_above, text_below, font_path=font_path, margin=text_margin)
-        add_txt += datetime.datetime.now() - before
         image = resize_image(image, new_width)
         if contrast_factor != 1.0:
             image = increase_contrast(image, contrast_factor)
@@ -240,9 +236,7 @@ def print_as_ascii(
             image = increase_brightness(image, brightness_factor)
         
         if color:
-            before = datetime.datetime.now()
             ascii_image = pixels_to_ascii_color(image, pixel_density, inverse)
-            pixels2ascii += datetime.datetime.now() - before
         else:
             image = grayify(image)
             ascii_str = pixels_to_ascii(image, pixel_density, inverse)
@@ -253,11 +247,6 @@ def print_as_ascii(
     
     if not results:
         raise ValueError("No frames found in the video.")
-
-    benchmark += f"""
-    AddText: {add_txt}
-    P2A: {pixels2ascii}
-    """
     
     if len(results) == 1:
         print(results[0])
@@ -266,9 +255,10 @@ def print_as_ascii(
         os.system('cls')
     else:
         os.system('clear')
+    n_digits = len(str(len(results)))
     for _ in range(999999999 if config and config.repeat == -1 else config.repeat):
         for i, ascii_image in enumerate(results):
-            sys.stdout.write(f'Frame {i+1}/{len(results)}\n{ascii_image}')
+            sys.stdout.write(f'Frame {i+1:{n_digits}}/{len(results)}\n{ascii_image}')
             sys.stdout.flush()
             time.sleep(config.time_bewtween_frames)
             sys.stdout.write("\033[999F")
@@ -314,3 +304,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
